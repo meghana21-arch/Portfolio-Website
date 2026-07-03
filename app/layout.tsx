@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import CatFollower from "@/components/CatFollower";
 
 export const metadata: Metadata = {
   title: "Sai Meghana Barla — AI Systems Engineer",
@@ -48,7 +49,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <CatFollower />
+        {children}
+      </body>
     </html>
   );
 }

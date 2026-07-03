@@ -17,27 +17,35 @@ interface Experience {
 const EXPERIENCES: Experience[] = [
   {
     company: "University of Florida",
-    role: "Research / Teaching Assistant",
-    period: "2023 – Present",
+    role: "Research Assistant",
+    period: "Jan 2026 – Present",
     description:
-      "Research on LLM evaluation pipelines and agentic systems. TA for graduate-level distributed systems courses.",
-    tags: ["Research", "LLM Evals", "Distributed Systems"],
+      "Scaling a distributed workflow orchestration system to support 1K+ users and daily HPC job execution. Built an ML-driven scheduling system to reduce job wait times and improve cluster utilization. Developed a full-stack React workflow UI that reduced setup time by ~90%.",
+    tags: ["Distributed Systems", "ML Scheduling", "React", "HPC", "Python"],
+  },
+  {
+    company: "TrueCaptcha.org",
+    role: "Co-Founder & Founding Software Engineer",
+    period: "Aug 2020 – Jan 2026",
+    description:
+      "Built and scaled a production AI SaaS platform to 1M+ daily API requests (2.8M peak) generating ~$20K revenue. Reduced end-to-end API latency from ~7s to ~1s via Redis caching, async workers, and horizontal scaling. Served 300+ daily active developers.",
+    tags: ["SaaS", "Redis", "OCR", "Distributed APIs", "99.99% Uptime"],
   },
   {
     company: "Digit Insurance",
     role: "Software Engineer",
-    period: "2022 – 2023",
+    period: "Jun 2024 – Nov 2025",
     description:
-      "Built backend microservices and data pipelines handling millions of insurance policy events per day.",
-    tags: ["Go", "Kafka", "PostgreSQL", "Microservices"],
+      "Re-architected 80 legacy batch workflows into modular Java Spring Boot services. Designed 30+ PostgreSQL-backed REST APIs reducing data retrieval from hours to near real-time. Optimized batch pipelines processing millions of insurance records, cutting execution time by 30%.",
+    tags: ["Java", "Spring Boot", "PostgreSQL", "REST APIs", "Batch Processing"],
   },
   {
-    company: "Friday AI",
+    company: "Keysoft IT Private Limited",
     role: "Software Engineer Intern",
-    period: "2021",
+    period: "Aug 2022 – Mar 2023",
     description:
-      "Developed AI-assisted productivity features and LangChain-based pipelines for document Q&A.",
-    tags: ["Python", "LangChain", "React", "FastAPI"],
+      "Integrated Strapi CMS with Next.js to streamline product management and order tracking workflows, resulting in a 41% increase in weekly orders.",
+    tags: ["Next.js", "Strapi CMS", "Node.js"],
   },
 ];
 

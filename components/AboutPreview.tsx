@@ -4,12 +4,14 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const SKILLS = [
-  "AI Agent Infrastructure",
   "Backend Systems",
   "Distributed Workflows",
-  "LLM Evals",
-  "Observability",
-  "Developer Tools",
+  "AI Developer Tools",
+  "AI Agents",
+  "LLM Observability",
+  "Spring Boot · FastAPI · Node.js",
+  "PostgreSQL · Redis · DynamoDB",
+  "AWS · Docker · Kubernetes",
 ];
 
 export default function AboutPreview() {
@@ -54,11 +56,14 @@ export default function AboutPreview() {
             transition={{ delay: 0.1, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="text-[clamp(1.25rem,2.5vw,2rem)] text-[#F5F0EA] leading-[1.45] font-light"
           >
-            I&apos;m a software engineer who enjoys turning complex systems into
-            reliable products. My work sits at the intersection of{" "}
-            <span className="text-[#C8A97E] font-normal">AI agents</span>,{" "}
-            <span className="text-[#C8A97E] font-normal">backend engineering</span>,{" "}
-            distributed workflows, and production-grade developer tools.
+            I build systems that scale. Co-founded{" "}
+            <span className="text-[#C8A97E] font-normal">TrueCaptcha.org</span> and
+            took it from ~1K to{" "}
+            <span className="text-[#C8A97E] font-normal">1M+ daily API requests</span>{" "}
+            at 99.99% uptime. Now doing research at UF on distributed workflow
+            orchestration, and building{" "}
+            <span className="text-[#C8A97E] font-normal">AI developer tools</span>{" "}
+            that are actually production-grade.
           </motion.p>
 
           <motion.div

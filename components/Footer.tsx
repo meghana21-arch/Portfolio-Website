@@ -7,17 +7,17 @@ import MagneticButton from "./MagneticButton";
 const LINKS = [
   {
     label: "Email",
-    href: "mailto:saikiranannam54@gmail.com",
+    href: "mailto:sbarla1@ufl.edu",
     external: false,
   },
   {
     label: "GitHub",
-    href: "https://github.com/saimeghanab",
+    href: "https://github.com/meghana21-arch",
     external: true,
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/sai-meghana-barla",
+    href: "https://linkedin.com/in/saimeghana-barla03",
     external: true,
   },
   {
@@ -46,7 +46,7 @@ export default function Footer() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[clamp(2.5rem,7vw,7rem)] font-serif text-[#F5F0EA] leading-[0.92] tracking-tight"
           >
-            Let&apos;s build reliable
+            Let&apos;s build something
           </motion.h2>
         </div>
         <div className="overflow-hidden">
@@ -56,7 +56,7 @@ export default function Footer() {
             transition={{ delay: 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[clamp(2.5rem,7vw,7rem)] font-serif text-[#C8A97E] italic leading-[0.92] tracking-tight"
           >
-            AI systems.
+            that scales.
           </motion.h2>
         </div>
       </div>

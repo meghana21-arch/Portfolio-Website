@@ -54,7 +54,7 @@ export default function Hero() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-xs md:text-sm text-[#6B6B6B] uppercase tracking-[0.15em]"
           >
-            Located in Gainesville / San Francisco
+            Gainesville, FL — open to SF
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
@@ -62,7 +62,7 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.8 }}
             className="text-xs md:text-sm text-[#6B6B6B] uppercase tracking-[0.15em]"
           >
-            Available 2025
+            MS CS · GPA 4.0 · UF
           </motion.p>
         </div>
 
@@ -70,18 +70,17 @@ export default function Hero() {
         <div className="mb-10 md:mb-14">
           <RevealLine delay={0.2}>
             <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-[#F5F0EA] leading-[0.92] tracking-tight">
-              Building reliable
+              Backend systems,
             </h1>
           </RevealLine>
           <RevealLine delay={0.32}>
             <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-[#F5F0EA] leading-[0.92] tracking-tight">
-              AI systems{" "}
-              <span className="italic text-[#C8A97E]">for the</span>
+              <span className="italic text-[#C8A97E]">AI tools,</span> built
             </h1>
           </RevealLine>
           <RevealLine delay={0.44}>
             <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-[#F5F0EA] leading-[0.92] tracking-tight">
-              agentic era.
+              to production scale.
             </h1>
           </RevealLine>
         </div>
@@ -94,8 +93,9 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-xl text-[#6B6B6B] text-sm md:text-base leading-relaxed"
           >
-            MS CS @ University of Florida. Software engineer focused on AI agents,
-            backend infrastructure, distributed systems, and LLM evaluation platforms.
+            MS CS @ University of Florida (GPA 4.0). Co-founded TrueCaptcha.org —
+            scaled from ~1K to 1M+ daily API requests with 99.99% uptime. Now building
+            AI developer tools and distributed systems at UF.
           </motion.p>
 
           {/* Scroll button — circular */}

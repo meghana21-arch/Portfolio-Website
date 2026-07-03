@@ -3,21 +3,22 @@ import "./globals.css";
 import CatFollower from "@/components/CatFollower";
 
 export const metadata: Metadata = {
-  title: "Sai Meghana Barla — AI Systems Engineer",
+  title: "Sai Meghana Barla — Software Engineer",
   description:
-    "MS Computer Science student at University of Florida. Software engineer focused on AI agents, backend systems, distributed systems, and LLM evaluation platforms.",
+    "Software engineer and MS CS student at University of Florida building production-grade backend systems, AI developer tools, and distributed workflow platforms.",
   keywords: [
     "AI agents",
     "backend engineer",
     "distributed systems",
-    "LLM evals",
+    "TrueCaptcha",
+    "AgentOps",
     "software engineer",
     "University of Florida",
   ],
   authors: [{ name: "Sai Meghana Barla" }],
   openGraph: {
-    title: "Sai Meghana Barla — AI Systems Engineer",
-    description: "Building reliable AI systems for the agentic era.",
+    title: "Sai Meghana Barla — Software Engineer",
+    description: "Building production-grade backend systems, AI developer tools, and distributed workflow platforms.",
     url: "https://saimeghana.dev",
     siteName: "Sai Meghana Barla",
     locale: "en_US",
@@ -25,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sai Meghana Barla — AI Systems Engineer",
-    description: "Building reliable AI systems for the agentic era.",
+    title: "Sai Meghana Barla — Software Engineer",
+    description: "Building production-grade backend systems, AI developer tools, and distributed workflow platforms.",
   },
   robots: {
     index: true,

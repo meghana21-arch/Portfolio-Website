@@ -10,27 +10,27 @@ import ProjectCard, { type Project } from "./ProjectCard";
 const PROJECTS: Project[] = [
   {
     index: "01",
-    title: "AgentOps Runtime",
+    title: "TrueCaptcha.org",
     description:
-      "Durable execution layer for AI agent loops with retries, crash recovery, state persistence, observability, and evaluation traces.",
-    tags: ["AI Agents", "Durable Execution", "Go", "TypeScript", "PostgreSQL"],
-    href: "https://github.com",
+      "Co-founded and scaled a production AI SaaS platform to 1M+ daily API requests with a 2.8M peak — generating ~$20K revenue. Reduced end-to-end API latency from ~7s to ~1s via Redis caching, async worker queues, horizontal scaling, and distributed processing pipelines.",
+    tags: ["SaaS", "Distributed Systems", "Redis", "OCR", "99.99% Uptime"],
+    href: "https://truecaptcha.org",
   },
   {
     index: "02",
-    title: "AgentForge",
+    title: "AgentOps Runtime",
     description:
-      "Marketplace for installable AI agents, reusable skills, tools, and memory modules across model providers.",
-    tags: ["AI Marketplace", "Claude", "Tools", "Memory", "Next.js"],
-    href: "https://github.com",
+      "Durable execution runtime for Claude-powered agent loops, handling 1,000+ simulated multi-step tasks. PostgreSQL-backed state machine with transactional event persistence preventing state corruption across 100+ simulated crashes. Redis retry queues, idempotency keys, and exponential backoff.",
+    tags: ["TypeScript", "Go", "PostgreSQL", "Redis", "Docker", "AWS", "Claude API"],
+    href: "https://github.com/meghana21-arch",
   },
   {
     index: "03",
-    title: "LLM Evals Platform",
+    title: "HPC Workflow Orchestrator",
     description:
-      "Annotation queue and evaluation dashboard for comparing LLM outputs, traces, and scoring workflows.",
-    tags: ["LLM Evals", "Human Feedback", "React", "Python", "AWS"],
-    href: "https://github.com",
+      "Distributed workflow orchestration system at UF supporting 1K+ users and daily HPC job execution. Built an ML-driven scheduler to reduce job wait times and improve cluster utilization, plus a full-stack React UI that reduced setup time by ~90%.",
+    tags: ["Distributed Systems", "ML Scheduling", "React", "HPC", "Research"],
+    href: "https://github.com/meghana21-arch",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function FeaturedWork() {
           initial={{ opacity: 0 }}
           animate={headerInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.2, duration: 0.6 }}
-          href="https://github.com/saimeghanab"
+          href="https://github.com/meghana21-arch"
           target="_blank"
           rel="noopener noreferrer"
           data-cursor="hover"

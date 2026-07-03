@@ -51,7 +51,7 @@ export default function Navbar() {
       {/* CTA */}
       <MagneticButton
         as="a"
-        href="mailto:saikiranannam54@gmail.com"
+        href="mailto:sbarla1@ufl.edu"
         className="text-sm font-medium px-5 py-2 rounded-full border border-[#2E2E2E] text-[#F5F0EA] hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors duration-300"
       >
         Get in touch

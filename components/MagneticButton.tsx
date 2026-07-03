@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { motion, useSpring } from "framer-motion";
 
 interface MagneticButtonProps {
@@ -25,7 +25,6 @@ export default function MagneticButton({
   as: Tag = "button",
 }: MagneticButtonProps) {
   const ref = useRef<HTMLElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
 
   const springConfig = { damping: 20, stiffness: 200, mass: 0.5 };
   const x = useSpring(0, springConfig);
@@ -44,19 +43,6 @@ export default function MagneticButton({
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
-    setIsHovered(false);
-  };
-
-  const sharedProps = {
-    ref: ref as React.RefObject<HTMLAnchorElement & HTMLButtonElement>,
-    className,
-    onMouseMove: handleMouseMove,
-    onMouseEnter: () => setIsHovered(true),
-    onMouseLeave: handleMouseLeave,
-    onClick,
-    ...(href ? { href, target, rel } : {}),
-    style: { x, y },
-    "data-cursor": "hover",
   };
 
   return (
@@ -68,7 +54,7 @@ export default function MagneticButton({
           rel={rel}
           className={className}
           onMouseMove={handleMouseMove}
-          onMouseEnter={() => setIsHovered(true)}
+          onMouseEnter={() => {}}
           onMouseLeave={handleMouseLeave}
           data-cursor="hover"
         >
@@ -78,7 +64,6 @@ export default function MagneticButton({
         <motion.button
           className={className}
           onMouseMove={handleMouseMove}
-          onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={handleMouseLeave}
           onClick={onClick}
           data-cursor="hover"

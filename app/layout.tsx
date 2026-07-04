@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CatFollower from "@/components/CatFollower";
+import SocialDock from "@/components/SocialDock";
+import DinoEasterEgg from "@/components/DinoEasterEgg";
 
 export const metadata: Metadata = {
   title: "Sai Meghana Barla — Software Engineer",
@@ -50,8 +52,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body className="pb-24">
         <CatFollower />
+        <SocialDock />
+        <DinoEasterEgg />
         {children}
       </body>
     </html>

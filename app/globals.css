@@ -35,3 +35,9 @@ body {
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
 
 ::selection { background: var(--color-accent); color: #0C0C0C; }
+
+/* Keep oneko cat below the social dock */
+#oneko {
+  z-index: 40 !important;
+  pointer-events: none !important;
+}

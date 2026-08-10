@@ -3,6 +3,17 @@ import "./globals.css";
 import CatFollower from "@/components/CatFollower";
 import SocialDock from "@/components/SocialDock";
 import DinoEasterEgg from "@/components/DinoEasterEgg";
+import { ThemeProvider } from "@/components/ThemeProvider";
+
+const THEME_INIT_SCRIPT = `
+(function () {
+  try {
+    var stored = localStorage.getItem("theme");
+    var theme = stored || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
+  } catch (e) {}
+})();
+`;
 
 export const metadata: Metadata = {
   title: "Sai Meghana Barla — Software Engineer",
@@ -51,12 +62,15 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
           rel="stylesheet"
         />
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="pb-24">
-        <CatFollower />
-        <SocialDock />
-        <DinoEasterEgg />
-        {children}
+      <body className="pb-24" suppressHydrationWarning>
+        <ThemeProvider>
+          <CatFollower />
+          <SocialDock />
+          <DinoEasterEgg />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

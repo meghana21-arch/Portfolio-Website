@@ -57,9 +57,9 @@ function FadeIn({
 function StatPill({ label, value, delay }: { label: string; value: string; delay: number }) {
   return (
     <FadeIn delay={delay}>
-      <div className="flex items-center gap-2 text-xs text-[#6B6B6B]">
-        <span className="w-1 h-1 rounded-full bg-[#C8A97E] opacity-70" />
-        <span className="text-[#C8A97E] font-mono font-medium">{value}</span>
+      <div className="flex items-center gap-2 text-xs text-muted">
+        <span className="w-1 h-1 rounded-full bg-accent opacity-70" />
+        <span className="text-accent font-mono font-medium">{value}</span>
         <span>{label}</span>
       </div>
     </FadeIn>
@@ -93,12 +93,12 @@ export default function Hero() {
         {/* Meta row */}
         <div className="flex items-center justify-between mb-8 md:mb-12">
           <FadeIn delay={0.5} y={8}>
-            <p className="text-xs md:text-sm text-[#6B6B6B] uppercase tracking-[0.15em]">
+            <p className="text-xs md:text-sm text-muted uppercase tracking-[0.15em]">
               Gainesville, FL — open to SF
             </p>
           </FadeIn>
           <FadeIn delay={0.6} y={8}>
-            <p className="text-xs md:text-sm text-[#6B6B6B] uppercase tracking-[0.15em]">
+            <p className="text-xs md:text-sm text-muted uppercase tracking-[0.15em]">
               MS CS · GPA 4.0 · UF
             </p>
           </FadeIn>
@@ -107,19 +107,19 @@ export default function Hero() {
         {/* Headline — line-by-line reveal */}
         <div className="mb-10 md:mb-14">
           <RevealLine delay={0.15}>
-            <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-[#F5F0EA] leading-[0.92] tracking-tight">
+            <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-ink leading-[0.92] tracking-tight">
               Backend systems,
             </h1>
           </RevealLine>
 
           <RevealLine delay={0.3}>
-            <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-[#F5F0EA] leading-[0.92] tracking-tight">
+            <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-ink leading-[0.92] tracking-tight">
               {/* "AI tools" reveals with a slight extra delay for accent feel */}
               <motion.span
                 initial={reduced ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.55, duration: 0.6 }}
-                className="italic text-[#C8A97E]"
+                className="italic text-accent"
               >
                 AI tools,
               </motion.span>{" "}
@@ -134,7 +134,7 @@ export default function Hero() {
           </RevealLine>
 
           <RevealLine delay={0.45}>
-            <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-[#F5F0EA] leading-[0.92] tracking-tight">
+            <h1 className="text-[clamp(3rem,8.5vw,8.5rem)] font-serif text-ink leading-[0.92] tracking-tight">
               to{" "}
               <motion.span
                 initial={reduced ? false : { opacity: 0 }}
@@ -152,7 +152,7 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="max-w-xl space-y-5">
             <FadeIn delay={0.75} y={12}>
-              <p className="text-[#6B6B6B] text-sm md:text-base leading-relaxed">
+              <p className="text-muted text-sm md:text-base leading-relaxed">
                 MS CS @ University of Florida (GPA 4.0). Co-founded TrueCaptcha.org —
                 scaled from ~1K to 1M+ daily API requests with 99.99% uptime. Now building
                 AI developer tools and distributed systems at UF.
@@ -179,7 +179,7 @@ export default function Hero() {
         initial={reduced ? false : { scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 1.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-0 left-0 right-0 h-[1px] bg-[#1E1E1E] origin-left"
+        className="absolute bottom-0 left-0 right-0 h-[1px] bg-border origin-left"
       />
     </section>
   );
@@ -192,16 +192,16 @@ function ScrollButton() {
     <button
       onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
       data-cursor="hover"
-      className="group relative w-24 h-24 rounded-full border border-[#2E2E2E] hover:border-[#C8A97E] transition-colors duration-400 flex items-center justify-center"
+      className="group relative w-24 h-24 rounded-full border border-border2 hover:border-accent transition-colors duration-400 flex items-center justify-center"
     >
       <div className="flex flex-col items-center gap-1">
-        <span className="text-[10px] uppercase tracking-[0.15em] text-[#6B6B6B] group-hover:text-[#C8A97E] transition-colors">
+        <span className="text-[10px] uppercase tracking-[0.15em] text-muted group-hover:text-accent transition-colors">
           Scroll
         </span>
         <motion.div
           animate={{ y: [0, 4, 0] }}
           transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-          className="text-[#6B6B6B] group-hover:text-[#C8A97E] transition-colors"
+          className="text-muted group-hover:text-accent transition-colors"
         >
           <svg width="12" height="16" viewBox="0 0 12 16" fill="none">
             <path d="M6 0v14M1 9l5 5 5-5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />

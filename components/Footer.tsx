@@ -35,7 +35,7 @@ export default function Footer() {
     <footer
       id="contact"
       ref={ref}
-      className="px-6 md:px-10 pt-24 pb-12 md:pt-36 md:pb-14 border-t border-[#1E1E1E] max-w-screen-xl mx-auto"
+      className="px-6 md:px-10 pt-24 pb-12 md:pt-36 md:pb-14 border-t border-border max-w-screen-xl mx-auto"
     >
       {/* Big closing statement */}
       <div className="mb-16 md:mb-24">
@@ -44,7 +44,7 @@ export default function Footer() {
             initial={{ y: "110%" }}
             animate={inView ? { y: "0%" } : {}}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(2.5rem,7vw,7rem)] font-serif text-[#F5F0EA] leading-[0.92] tracking-tight"
+            className="text-[clamp(2.5rem,7vw,7rem)] font-serif text-ink leading-[0.92] tracking-tight"
           >
             Let&apos;s build something
           </motion.h2>
@@ -54,7 +54,7 @@ export default function Footer() {
             initial={{ y: "110%" }}
             animate={inView ? { y: "0%" } : {}}
             transition={{ delay: 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(2.5rem,7vw,7rem)] font-serif text-[#C8A97E] italic leading-[0.92] tracking-tight"
+            className="text-[clamp(2.5rem,7vw,7rem)] font-serif text-accent italic leading-[0.92] tracking-tight"
           >
             that scales.
           </motion.h2>
@@ -75,7 +75,7 @@ export default function Footer() {
             href={link.href}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noopener noreferrer" : undefined}
-            className="px-6 py-3 rounded-full border border-[#2E2E2E] text-sm text-[#F5F0EA] hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors duration-300"
+            className="px-6 py-3 rounded-full border border-border2 text-sm text-ink hover:border-accent hover:text-accent transition-colors duration-300"
           >
             {link.label}
           </MagneticButton>
@@ -87,12 +87,12 @@ export default function Footer() {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.5, duration: 0.8 }}
-        className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-8 border-t border-[#1A1A1A]"
+        className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-8 border-t border-border"
       >
-        <p className="text-xs text-[#3A3A3A] font-mono">
+        <p className="text-xs text-faint2 font-mono">
           © {new Date().getFullYear()} Sai Meghana Barla
         </p>
-        <p className="text-xs text-[#3A3A3A] font-mono">
+        <p className="text-xs text-faint2 font-mono">
           Gainesville / San Francisco
         </p>
       </motion.div>

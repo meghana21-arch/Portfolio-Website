@@ -92,16 +92,16 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
       initial={reduced ? false : { opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="border-t border-[#1E1E1E] py-8 md:py-10"
+      className="border-t border-border py-8 md:py-10"
     >
       {/* Top row */}
       <div className="flex items-start justify-between gap-6 mb-6">
         <div className="flex items-start gap-5 flex-1 min-w-0">
-          <span className="text-[11px] font-mono text-[#3A3A3A] mt-1 flex-shrink-0">
+          <span className="text-[11px] font-mono text-faint2 mt-1 flex-shrink-0">
             {project.index}
           </span>
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg md:text-xl font-medium text-[#F5F0EA] mb-1">
+            <h3 className="text-lg md:text-xl font-medium text-ink mb-1">
               {project.title}
             </h3>
             {/* Tags */}
@@ -109,7 +109,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
               {project.tags.map((t) => (
                 <span
                   key={t}
-                  className="px-2 py-0.5 text-[10px] font-mono rounded border border-[#2A2A2A] text-[#4A4A4A]"
+                  className="px-2 py-0.5 text-[10px] font-mono rounded border border-border2 text-faint"
                 >
                   {t}
                 </span>
@@ -121,7 +121,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
         {/* Expand / collapse toggle */}
         <button
           onClick={() => setExpanded((v) => !v)}
-          className="flex-shrink-0 w-8 h-8 rounded-full border border-[#2A2A2A] flex items-center justify-center text-[#6B6B6B] hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors duration-200 mt-0.5"
+          className="flex-shrink-0 w-8 h-8 rounded-full border border-border2 flex items-center justify-center text-muted hover:border-accent hover:text-accent transition-colors duration-200 mt-0.5"
           aria-label={expanded ? "Collapse" : "Expand"}
         >
           <motion.svg
@@ -150,7 +150,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="ml-9 grid md:grid-cols-3 gap-6 py-4 border-t border-[#1A1A1A]">
+            <div className="ml-9 grid md:grid-cols-3 gap-6 py-4 border-t border-border">
               {/* Problem */}
               <CaseLayer
                 label="Problem"
@@ -170,7 +170,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
                 label="Impact"
                 text={project.impact}
                 delay={0.12}
-                color="#C8A97E"
+                color="rgb(var(--color-accent-rgb))"
                 accent
               />
             </div>
@@ -181,7 +181,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
                 href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs text-[#6B6B6B] hover:text-[#C8A97E] transition-colors duration-200 group"
+                className="inline-flex items-center gap-2 text-xs text-muted hover:text-accent transition-colors duration-200 group"
               >
                 <span className="w-6 h-px bg-current transition-all duration-300 group-hover:w-10" />
                 View project
@@ -221,7 +221,7 @@ function CaseLayer({
       </p>
       <p
         className={`text-sm leading-relaxed ${
-          accent ? "text-[#C8A97E]" : "text-[#6B6B6B]"
+          accent ? "text-accent" : "text-muted"
         }`}
       >
         {text}
@@ -244,7 +244,7 @@ export default function FeaturedWork() {
           initial={{ opacity: 0, y: 10 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-xs uppercase tracking-[0.15em] text-[#6B6B6B]"
+          className="text-xs uppercase tracking-[0.15em] text-muted"
         >
           Selected Work
         </motion.p>
@@ -255,7 +255,7 @@ export default function FeaturedWork() {
           href="https://github.com/meghana21-arch"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-[#6B6B6B] hover:text-[#F5F0EA] transition-colors duration-300 underline underline-offset-4"
+          className="text-xs text-muted hover:text-ink transition-colors duration-300 underline underline-offset-4"
         >
           All projects →
         </motion.a>
@@ -265,7 +265,7 @@ export default function FeaturedWork() {
         initial={{ opacity: 0 }}
         animate={headerInView ? { opacity: 1 } : {}}
         transition={{ delay: 0.15, duration: 0.5 }}
-        className="text-[11px] text-[#3A3A3A] font-mono mb-2"
+        className="text-[11px] text-faint2 font-mono mb-2"
       >
         ↗ click + to expand each project
       </motion.p>
@@ -275,7 +275,7 @@ export default function FeaturedWork() {
         {PROJECTS.map((project, i) => (
           <ProjectCard key={project.index} project={project} delay={i * 0.06} />
         ))}
-        <div className="border-t border-[#1E1E1E]" />
+        <div className="border-t border-border" />
       </div>
     </section>
   );

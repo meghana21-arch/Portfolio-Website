@@ -27,15 +27,15 @@ const SKILLS: Skill[] = [
 ];
 
 const TIER_COLOR: Record<Skill["tier"], string> = {
-  core:  "border-[#2E2E2E] text-[#8A8A8A]",
-  infra: "border-[#252525] text-[#6B6B6B]",
-  ai:    "border-[#C8A97E]/40 text-[#C8A97E]",
+  core:  "border-border2 text-muted2",
+  infra: "border-border text-muted",
+  ai:    "border-accent/40 text-accent",
 };
 
 const TIER_BG: Record<Skill["tier"], string> = {
   core:  "bg-white/[0.03]",
   infra: "bg-transparent",
-  ai:    "bg-[#C8A97E]/[0.05]",
+  ai:    "bg-accent/[0.05]",
 };
 
 // ─── SkillCloud ───────────────────────────────────────────────────────────────
@@ -47,13 +47,13 @@ export default function SkillCloud() {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <section className="px-6 md:px-10 py-16 md:py-24 max-w-screen-xl mx-auto border-t border-[#1E1E1E]">
+    <section className="px-6 md:px-10 py-16 md:py-24 max-w-screen-xl mx-auto border-t border-border">
       {/* Header */}
       <motion.p
         initial={reduced ? false : { opacity: 0, y: 10 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="text-xs uppercase tracking-[0.15em] text-[#6B6B6B] mb-10"
+        className="text-xs uppercase tracking-[0.15em] text-muted mb-10"
       >
         Skills &amp; Stack
       </motion.p>
@@ -99,8 +99,8 @@ export default function SkillCloud() {
                     className="absolute z-20 pointer-events-none"
                     style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
                   >
-                    <div className="relative px-3 py-2 rounded-lg bg-[#111] border border-[#2A2A2A] shadow-xl whitespace-nowrap max-w-[240px]">
-                      <p className="text-[11px] font-normal text-[#8A8A8A] text-left leading-snug whitespace-normal">
+                    <div className="relative px-3 py-2 rounded-lg bg-surface border border-border2 shadow-xl whitespace-nowrap max-w-[240px]">
+                      <p className="text-[11px] font-normal text-muted2 text-left leading-snug whitespace-normal">
                         {skill.where}
                       </p>
                       <span
@@ -110,7 +110,7 @@ export default function SkillCloud() {
                           width: 0, height: 0,
                           borderLeft: "4px solid transparent",
                           borderRight: "4px solid transparent",
-                          borderTop: "4px solid #2A2A2A",
+                          borderTop: "4px solid rgb(var(--color-border2-rgb))",
                         }}
                       />
                     </div>
@@ -133,12 +133,12 @@ export default function SkillCloud() {
           <div key={tier} className="flex items-center gap-2">
             <span
               className={`w-2 h-2 rounded-full border ${
-                tier === "ai" ? "border-[#C8A97E] bg-[#C8A97E]/30" :
-                tier === "core" ? "border-[#8A8A8A] bg-white/10" :
-                "border-[#4A4A4A] bg-transparent"
+                tier === "ai" ? "border-accent bg-accent/30" :
+                tier === "core" ? "border-muted2 bg-white/10" :
+                "border-faint bg-transparent"
               }`}
             />
-            <span className="text-[10px] font-mono text-[#3A3A3A] uppercase tracking-wider">
+            <span className="text-[10px] font-mono text-faint2 uppercase tracking-wider">
               {tier === "ai" ? "AI / ML" : tier === "core" ? "Core" : "Infra"}
             </span>
           </div>

@@ -62,18 +62,18 @@ function ArticleCard({ article, index }: ArticleCardProps) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       data-cursor="hover"
-      className="group block py-7 border-t border-[#1E1E1E] hover:border-[#C8A97E] transition-colors duration-300"
+      className="group block py-7 border-t border-border hover:border-accent transition-colors duration-300"
     >
       <div className="flex items-start justify-between gap-6">
         <div className="min-w-0 flex-1">
-          <h3 className="text-base md:text-lg text-[#D0CBB8] group-hover:text-[#F5F0EA] transition-colors duration-300 font-light leading-snug mb-3">
+          <h3 className="text-base md:text-lg text-ink2 group-hover:text-ink transition-colors duration-300 font-light leading-snug mb-3">
             {article.title}
           </h3>
           <div className="flex flex-wrap gap-2">
             {article.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 text-[11px] rounded-full border border-[#252525] text-[#4A4A4A] font-mono"
+                className="px-2 py-0.5 text-[11px] rounded-full border border-border text-faint font-mono"
               >
                 {tag}
               </span>
@@ -82,8 +82,8 @@ function ArticleCard({ article, index }: ArticleCardProps) {
         </div>
 
         <div className="text-right shrink-0">
-          <p className="text-xs text-[#4A4A4A] font-mono">{article.date}</p>
-          <p className="text-xs text-[#3A3A3A] font-mono mt-1">{article.readTime}</p>
+          <p className="text-xs text-faint font-mono">{article.date}</p>
+          <p className="text-xs text-faint2 font-mono mt-1">{article.readTime}</p>
         </div>
       </div>
     </motion.a>
@@ -101,7 +101,7 @@ export default function WritingSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-xs uppercase tracking-[0.15em] text-[#6B6B6B]"
+          className="text-xs uppercase tracking-[0.15em] text-muted"
         >
           Writing
         </motion.p>
@@ -111,7 +111,7 @@ export default function WritingSection() {
           transition={{ delay: 0.2, duration: 0.6 }}
           href="/writing"
           data-cursor="hover"
-          className="text-xs text-[#6B6B6B] hover:text-[#F5F0EA] transition-colors duration-300 underline underline-offset-4"
+          className="text-xs text-muted hover:text-ink transition-colors duration-300 underline underline-offset-4"
         >
           All posts →
         </motion.a>
@@ -121,7 +121,7 @@ export default function WritingSection() {
         {ARTICLES.map((article, i) => (
           <ArticleCard key={article.slug} article={article} index={i} />
         ))}
-        <div className="border-t border-[#1E1E1E]" />
+        <div className="border-t border-border" />
       </div>
     </section>
   );

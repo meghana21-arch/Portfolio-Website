@@ -65,26 +65,26 @@ function ExperienceRow({ exp, index, isLast }: ExperienceRowProps) {
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`grid md:grid-cols-[12rem_1fr] gap-4 md:gap-10 py-8 md:py-10 border-t border-[#1E1E1E] ${
+      className={`grid md:grid-cols-[12rem_1fr] gap-4 md:gap-10 py-8 md:py-10 border-t border-border ${
         isLast ? "border-b" : ""
       }`}
     >
       {/* Left: company + period */}
       <div>
-        <p className="text-sm font-medium text-[#F5F0EA]">{exp.company}</p>
-        <p className="text-xs text-[#4A4A4A] mt-1 font-mono">{exp.period}</p>
+        <p className="text-sm font-medium text-ink">{exp.company}</p>
+        <p className="text-xs text-faint mt-1 font-mono">{exp.period}</p>
       </div>
 
       {/* Right: role + description */}
       <div>
-        <p className="text-base md:text-lg text-[#D0CBB8] font-light mb-2">{exp.role}</p>
-        <p className="text-sm text-[#6B6B6B] leading-relaxed">{exp.description}</p>
+        <p className="text-base md:text-lg text-ink2 font-light mb-2">{exp.role}</p>
+        <p className="text-sm text-muted leading-relaxed">{exp.description}</p>
         {exp.tags && (
           <div className="flex flex-wrap gap-2 mt-4">
             {exp.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 text-[11px] rounded-full bg-[#141414] border border-[#2A2A2A] text-[#555] font-mono"
+                className="px-2.5 py-1 text-[11px] rounded-full bg-surface border border-border2 text-faint font-mono"
               >
                 {tag}
               </span>
@@ -107,7 +107,7 @@ export default function ExperienceTimeline() {
         initial={{ opacity: 0, y: 10 }}
         animate={headerInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="text-xs uppercase tracking-[0.15em] text-[#6B6B6B] mb-10"
+        className="text-xs uppercase tracking-[0.15em] text-muted mb-10"
       >
         Experience
       </motion.p>

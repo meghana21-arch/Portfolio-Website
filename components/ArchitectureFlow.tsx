@@ -54,8 +54,8 @@ export default function ArchitectureFlow({ nodes, stepMs = 220 }: Props) {
               className={[
                 "px-2.5 py-1 rounded-md border text-[11px] font-mono font-medium whitespace-nowrap",
                 node.accent
-                  ? "border-[#C8A97E]/50 text-[#C8A97E] bg-[#C8A97E]/[0.06]"
-                  : "border-[#2A2A2A] text-[#6B6B6B] bg-white/[0.02]",
+                  ? "border-accent/50 text-accent bg-accent/[0.06]"
+                  : "border-border2 text-muted bg-white/[0.02]",
               ].join(" ")}
             >
               {node.label}
@@ -66,7 +66,7 @@ export default function ArchitectureFlow({ nodes, stepMs = 220 }: Props) {
               <div className="relative mx-2 flex items-center" style={{ width: 28 }}>
                 {/* Base track */}
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full h-px bg-[#2A2A2A]" />
+                  <div className="w-full h-px bg-border2" />
                 </div>
                 {/* Animated fill */}
                 <motion.div
@@ -77,7 +77,7 @@ export default function ArchitectureFlow({ nodes, stepMs = 220 }: Props) {
                     initial={{ scaleX: 0 }}
                     animate={isLit ? { scaleX: 1 } : { scaleX: 0 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="w-full h-px bg-[#C8A97E]/60 origin-left"
+                    className="w-full h-px bg-accent/60 origin-left"
                   />
                 </motion.div>
                 {/* Arrow head */}
@@ -88,7 +88,7 @@ export default function ArchitectureFlow({ nodes, stepMs = 220 }: Props) {
                   animate={isLit ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.2, delay: 0.1 }}
                 >
-                  <path d="M0 0 L6 3 L0 6" fill="none" stroke="rgba(200,169,126,0.6)" strokeWidth="1" strokeLinecap="round" />
+                  <path d="M0 0 L6 3 L0 6" fill="none" stroke="rgb(var(--color-accent-rgb) / 0.6)" strokeWidth="1" strokeLinecap="round" />
                 </motion.svg>
               </div>
             )}

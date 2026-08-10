@@ -3,11 +3,40 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #0C0C0C;
-  --color-text: #F5F0EA;
-  --color-muted: #6B6B6B;
-  --color-border: #1E1E1E;
-  --color-accent: #C8A97E;
+  --color-bg-rgb: 12 12 12;
+  --color-surface-rgb: 20 20 20;
+  --color-border-rgb: 30 30 30;
+  --color-border2-rgb: 42 42 42;
+  --color-faint2-rgb: 58 58 58;
+  --color-faint-rgb: 74 74 74;
+  --color-muted-rgb: 107 107 107;
+  --color-muted2-rgb: 138 138 138;
+  --color-ink2-rgb: 208 203 184;
+  --color-ink-rgb: 245 240 234;
+  --color-accent-rgb: 200 169 126;
+  --color-accent2-rgb: 200 169 126;
+  --color-accent3-rgb: 200 169 126;
+
+  /* legacy aliases still referenced directly in globals.css below */
+  --color-bg: rgb(var(--color-bg-rgb));
+  --color-text: rgb(var(--color-ink-rgb));
+  --color-accent: rgb(var(--color-accent-rgb));
+}
+
+:root[data-theme="light"] {
+  --color-bg-rgb: 255 245 229;
+  --color-surface-rgb: 250 235 210;
+  --color-border-rgb: 237 213 175;
+  --color-border2-rgb: 219 185 138;
+  --color-faint2-rgb: 191 152 108;
+  --color-faint-rgb: 163 122 85;
+  --color-muted-rgb: 135 98 68;
+  --color-muted2-rgb: 107 74 56;
+  --color-ink2-rgb: 64 42 34;
+  --color-ink-rgb: 26 26 26;
+  --color-accent-rgb: 217 34 67;
+  --color-accent2-rgb: 246 157 57;
+  --color-accent3-rgb: 224 195 117;
 }
 
 * {
@@ -18,6 +47,11 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 body {
@@ -27,14 +61,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--color-border2-rgb)); border-radius: 2px; }
 
-::selection { background: var(--color-accent); color: #0C0C0C; }
+::selection { background: var(--color-accent); color: rgb(var(--color-bg-rgb)); }
 
 /* Keep oneko cat below the social dock */
 #oneko {

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import MagneticButton from "./MagneticButton";
+import ThemeToggle from "./ThemeToggle";
 
 const NAV_LINKS = [
   { label: "Work", href: "#work" },
@@ -26,11 +27,11 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-[100] px-6 md:px-10 py-5 flex items-center justify-between transition-colors duration-500 ${
-        scrolled ? "bg-[#0C0C0C]/90 backdrop-blur-md border-b border-[#1E1E1E]" : ""
+        scrolled ? "bg-bg/90 backdrop-blur-md border-b border-border" : ""
       }`}
     >
       {/* Logo / name */}
-      <MagneticButton as="a" href="/" className="text-sm font-medium text-[#F5F0EA] tracking-wide">
+      <MagneticButton as="a" href="/" className="text-sm font-medium text-ink tracking-wide">
         SMB
       </MagneticButton>
 
@@ -41,21 +42,24 @@ export default function Navbar() {
             key={link.href}
             as="a"
             href={link.href}
-            className="text-sm text-[#6B6B6B] hover:text-[#F5F0EA] transition-colors duration-300"
+            className="text-sm text-muted hover:text-ink transition-colors duration-300"
           >
             {link.label}
           </MagneticButton>
         ))}
       </nav>
 
-      {/* CTA */}
-      <MagneticButton
-        as="a"
-        href="mailto:sbarla1@ufl.edu"
-        className="text-sm font-medium px-5 py-2 rounded-full border border-[#2E2E2E] text-[#F5F0EA] hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors duration-300"
-      >
-        Get in touch
-      </MagneticButton>
+      {/* Theme toggle + CTA */}
+      <div className="flex items-center gap-3">
+        <ThemeToggle />
+        <MagneticButton
+          as="a"
+          href="mailto:sbarla1@ufl.edu"
+          className="text-sm font-medium px-5 py-2 rounded-full border border-border2 text-ink hover:border-accent hover:text-accent transition-colors duration-300"
+        >
+          Get in touch
+        </MagneticButton>
+      </div>
     </motion.header>
   );
 }

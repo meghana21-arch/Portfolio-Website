@@ -1,33 +1,32 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import ArchitectureFlow, { type FlowNode } from "./ArchitectureFlow";
 
 // ─── Project data ─────────────────────────────────────────────────────────────
 
 interface Project {
-  index: string;
   title: string;
-  problem: string;
-  system: string;
-  impact: string;
-  tags: string[];
+  description: string;
+  highlights: string[];
+  tech: string[];
   href: string;
   flow: FlowNode[];
 }
 
 const PROJECTS: Project[] = [
   {
-    index: "01",
     title: "AgentOps Runtime",
-    problem:
-      "Agent loops fail silently. State, retries, and tool calls have no durability — a crash loses everything.",
-    system:
-      "Durable execution layer with a PostgreSQL-backed state machine, transactional event persistence, Redis retry queues, idempotency keys, and exponential backoff. Handles 1,000+ simulated multi-step tasks and 100+ crash scenarios without state corruption.",
-    impact:
-      "Turns fragile one-shot prompting into reliable, inspectable, production-grade agent loops.",
-    tags: ["Go", "TypeScript", "PostgreSQL", "Redis", "Docker", "AWS", "Claude API"],
+    description:
+      "Durable execution layer for AI agent loops — state, retries, and tool calls survive a crash instead of disappearing silently.",
+    highlights: [
+      "PostgreSQL-backed state machine with transactional event persistence",
+      "Redis retry queues with idempotency keys and exponential backoff",
+      "Validated against 1,000+ simulated multi-step tasks and 100+ crash scenarios without state corruption",
+    ],
+    tech: ["Go", "TypeScript", "PostgreSQL", "Redis", "Docker", "AWS", "Claude API"],
     href: "https://github.com/meghana21-arch",
     flow: [
       { label: "User Goal" },
@@ -39,15 +38,15 @@ const PROJECTS: Project[] = [
     ],
   },
   {
-    index: "02",
     title: "TrueCaptcha.org",
-    problem:
-      "CAPTCHA verification at scale is slow and unreliable. Existing solutions had ~7 s latency at peak load.",
-    system:
-      "Co-founded and scaled a production AI SaaS. Redis caching, async worker queues, horizontal scaling, and distributed OCR pipelines reduced end-to-end latency from ~7 s to ~1 s. Reached 2.8 M peak daily requests.",
-    impact:
-      "1 M+ daily API requests · 99.99% uptime · ~$20 K revenue · trusted by thousands of developers.",
-    tags: ["SaaS", "Distributed Systems", "Redis", "OCR", "FastAPI"],
+    description:
+      "Co-founded and scaled a production AI SaaS for automated CAPTCHA solving via OCR/ML — from prototype to real production traffic.",
+    highlights: [
+      "Reduced end-to-end latency from ~7s to ~1s via Redis caching and async worker queues",
+      "Scaled to 2.8M peak daily requests and 1M+ daily API requests at 99.99% uptime",
+      "Generated ~$20K in revenue, trusted by thousands of developers",
+    ],
+    tech: ["Python", "FastAPI", "Redis", "OCR", "Distributed Systems"],
     href: "https://truecaptcha.org",
     flow: [
       { label: "Request" },
@@ -58,15 +57,34 @@ const PROJECTS: Project[] = [
     ],
   },
   {
-    index: "03",
+    title: "Lamprotech.com",
+    description:
+      "SaaS platform for browser automation via natural language — an LLM-powered engine that turns plain-English commands into automated browser actions.",
+    highlights: [
+      "LLM-driven browser automation from natural language commands",
+      "Production Chrome extension backed by a TypeScript/Go service processing 50K+ tokens daily",
+      "200+ active users generating $1K+ in monthly recurring revenue",
+    ],
+    tech: ["TypeScript", "Next.js", "Go", "AWS", "Redis"],
+    href: "https://lamprotech.com/",
+    flow: [
+      { label: "NL Command" },
+      { label: "LLM Engine", accent: true },
+      { label: "Automation Layer" },
+      { label: "Chrome Extension", accent: true },
+      { label: "Result" },
+    ],
+  },
+  {
     title: "HPC Workflow Orchestrator",
-    problem:
-      "HPC job setup for 1 K+ users is manual, error-prone, and opaque — no visibility into queue state or scheduling efficiency.",
-    system:
-      "Distributed workflow orchestration with an ML-driven scheduler that predicts job wait times and optimises cluster utilisation. Full-stack React UI replaces CLI configuration.",
-    impact:
-      "~90% reduction in setup time · improved cluster utilisation · daily job execution at UF research scale.",
-    tags: ["Distributed Systems", "ML Scheduling", "React", "HPC", "Research"],
+    description:
+      "Distributed workflow orchestration platform replacing manual, error-prone HPC job setup for 1,000+ research users.",
+    highlights: [
+      "ML-driven scheduler predicts job wait times and optimizes cluster utilization",
+      "Full-stack React UI replaces opaque CLI configuration",
+      "~90% reduction in job setup time at University of Florida research scale",
+    ],
+    tech: ["Distributed Systems", "ML Scheduling", "React", "HPC", "Research"],
     href: "https://github.com/meghana21-arch",
     flow: [
       { label: "Job Submission" },
@@ -78,154 +96,86 @@ const PROJECTS: Project[] = [
   },
 ];
 
+const TECH_COLORS = ["text-accent border-accent/30 bg-accent/[0.06]", "text-accent2 border-accent2/30 bg-accent2/[0.06]", "text-accent3 border-accent3/30 bg-accent3/[0.06]"];
+
 // ─── Project card ─────────────────────────────────────────────────────────────
 
-function ProjectCard({ project, delay }: { project: Project; delay: number }) {
-  const ref    = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const ref     = useRef<HTMLDivElement>(null);
+  const inView  = useInView(ref, { once: true, margin: "-100px" });
   const reduced = useReducedMotion();
-  const [expanded, setExpanded] = useState(false);
+  const reversed = index % 2 === 1;
 
   return (
     <motion.div
       ref={ref}
-      initial={reduced ? false : { opacity: 0, y: 24 }}
+      initial={reduced ? false : { opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="border-t border-border py-8 md:py-10"
+      transition={{ duration: 0.6, delay: 0.1 }}
+      className="bg-surface border border-border rounded-lg overflow-hidden group"
     >
-      {/* Top row */}
-      <div className="flex items-start justify-between gap-6 mb-6">
-        <div className="flex items-start gap-5 flex-1 min-w-0">
-          <span className="text-[11px] font-mono text-faint2 mt-1 flex-shrink-0">
-            {project.index}
-          </span>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-lg md:text-xl font-medium text-ink mb-1">
-              {project.title}
-            </h3>
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 mt-2">
-              {project.tags.map((t) => (
+      <div className="grid lg:grid-cols-2 gap-0">
+        {/* Text column */}
+        <div className={`p-8 lg:p-12 flex flex-col justify-center ${reversed ? "lg:order-2" : ""}`}>
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <h3 className="text-2xl md:text-3xl font-serif text-ink">{project.title}</h3>
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 text-muted hover:text-accent transition-colors mt-1"
+              aria-label={`Open ${project.title}`}
+            >
+              <ExternalLink size={20} />
+            </a>
+          </div>
+
+          <p className="text-muted mb-6 leading-relaxed text-base md:text-lg">
+            {project.description}
+          </p>
+
+          <div className="mb-6 space-y-3">
+            {project.highlights.map((h, i) => (
+              <div key={i} className="flex items-start gap-3 text-sm text-muted">
+                <span className="text-accent mt-0.5">▹</span>
+                <span>{h}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mb-8">
+            <h4 className="text-xs font-semibold text-faint mb-3 uppercase tracking-wider">
+              Tech Stack
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              {project.tech.map((t, i) => (
                 <span
                   key={t}
-                  className="px-2 py-0.5 text-[10px] font-mono rounded border border-border2 text-faint"
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border ${TECH_COLORS[i % TECH_COLORS.length]}`}
                 >
                   {t}
                 </span>
               ))}
             </div>
           </div>
+
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold text-bg self-start transition-transform hover:scale-[1.03]"
+            style={{ background: "linear-gradient(90deg, rgb(var(--color-accent-rgb)), rgb(var(--color-accent2-rgb)))" }}
+          >
+            View Live Site
+            <ExternalLink size={14} />
+          </a>
         </div>
 
-        {/* Expand / collapse toggle */}
-        <button
-          onClick={() => setExpanded((v) => !v)}
-          className="flex-shrink-0 w-8 h-8 rounded-full border border-border2 flex items-center justify-center text-muted hover:border-accent hover:text-accent transition-colors duration-200 mt-0.5"
-          aria-label={expanded ? "Collapse" : "Expand"}
-        >
-          <motion.svg
-            width="10" height="10" viewBox="0 0 10 10"
-            animate={{ rotate: expanded ? 45 : 0 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <path d="M5 1v8M1 5h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-          </motion.svg>
-        </button>
+        {/* Visual column */}
+        <div className={`flex items-center justify-center p-10 bg-bg/40 border-border ${reversed ? "lg:order-1 lg:border-r" : "border-t lg:border-t-0 lg:border-l"}`}>
+          <ArchitectureFlow nodes={project.flow} />
+        </div>
       </div>
-
-      {/* Architecture flow — always visible */}
-      <div className="ml-9 mb-5">
-        <ArchitectureFlow nodes={project.flow} />
-      </div>
-
-      {/* Expandable case-study layers */}
-      <AnimatePresence initial={false}>
-        {expanded && (
-          <motion.div
-            key="case"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="ml-9 grid md:grid-cols-3 gap-6 py-4 border-t border-border">
-              {/* Problem */}
-              <CaseLayer
-                label="Problem"
-                text={project.problem}
-                delay={0}
-                color="#FF6B6B"
-              />
-              {/* System */}
-              <CaseLayer
-                label="System"
-                text={project.system}
-                delay={0.06}
-                color="#6B9FFF"
-              />
-              {/* Impact */}
-              <CaseLayer
-                label="Impact"
-                text={project.impact}
-                delay={0.12}
-                color="rgb(var(--color-accent-rgb))"
-                accent
-              />
-            </div>
-
-            {/* Link */}
-            <div className="ml-9 mt-2">
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs text-muted hover:text-accent transition-colors duration-200 group"
-              >
-                <span className="w-6 h-px bg-current transition-all duration-300 group-hover:w-10" />
-                View project
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
-function CaseLayer({
-  label,
-  text,
-  delay,
-  color,
-  accent,
-}: {
-  label: string;
-  text: string;
-  delay: number;
-  color: string;
-  accent?: boolean;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay, duration: 0.4, ease: "easeOut" }}
-    >
-      <p
-        className="text-[10px] font-mono uppercase tracking-[0.12em] mb-2"
-        style={{ color }}
-      >
-        {label}
-      </p>
-      <p
-        className={`text-sm leading-relaxed ${
-          accent ? "text-accent" : "text-muted"
-        }`}
-      >
-        {text}
-      </p>
     </motion.div>
   );
 }
@@ -233,49 +183,45 @@ function CaseLayer({
 // ─── FeaturedWork ─────────────────────────────────────────────────────────────
 
 export default function FeaturedWork() {
-  const headerRef  = useRef<HTMLDivElement>(null);
+  const headerRef    = useRef<HTMLDivElement>(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
 
   return (
-    <section id="work" className="px-6 md:px-10 py-12 md:py-20 max-w-screen-xl mx-auto">
+    <section id="work" className="px-6 md:px-10 py-20 md:py-28 max-w-screen-xl mx-auto">
       {/* Section header */}
-      <div ref={headerRef} className="flex items-end justify-between mb-2">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
+      <div ref={headerRef} className="text-center mb-16">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-xs uppercase tracking-[0.15em] text-muted"
+          className="text-4xl md:text-5xl font-serif mb-4"
         >
-          Selected Work
-        </motion.p>
-        <motion.a
+          <span className="text-ink">Featured </span>
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, rgb(var(--color-accent-rgb)), rgb(var(--color-accent2-rgb)), rgb(var(--color-accent3-rgb)))",
+            }}
+          >
+            Projects
+          </span>
+        </motion.h2>
+        <motion.p
           initial={{ opacity: 0 }}
           animate={headerInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          href="https://github.com/meghana21-arch"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs text-muted hover:text-ink transition-colors duration-300 underline underline-offset-4"
+          transition={{ delay: 0.15, duration: 0.6 }}
+          className="text-muted max-w-2xl mx-auto"
         >
-          All projects →
-        </motion.a>
+          Production-grade SaaS platforms and scalable systems I&apos;ve built and shipped.
+        </motion.p>
       </div>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={headerInView ? { opacity: 1 } : {}}
-        transition={{ delay: 0.15, duration: 0.5 }}
-        className="text-[11px] text-faint2 font-mono mb-2"
-      >
-        ↗ click + to expand each project
-      </motion.p>
-
-      {/* Project list */}
-      <div>
+      {/* Project cards */}
+      <div className="space-y-16">
         {PROJECTS.map((project, i) => (
-          <ProjectCard key={project.index} project={project} delay={i * 0.06} />
+          <ProjectCard key={project.title} project={project} index={i} />
         ))}
-        <div className="border-t border-border" />
       </div>
     </section>
   );

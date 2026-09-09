@@ -24,34 +24,37 @@ export default function BootLoader({ onDone }: { onDone: () => void }) {
   const [visibleCount, setVisibleCount] = useState(0);
   const [exiting, setExiting]         = useState(false);
 
-  // Skip if already seen this session or reduced motion
-  const alreadySeen =
-    typeof sessionStorage !== "undefined" &&
-    sessionStorage.getItem(SESSION_KEY) === "1";
-
   useEffect(() => {
+    // Browser-only state must be read after hydration so the first client
+    // render always matches the server output.
+    const alreadySeen = sessionStorage.getItem(SESSION_KEY) === "1";
+
     if (alreadySeen || shouldReduceMotion) {
+      setVisible(false);
       onDone();
       return;
     }
 
     // Reveal lines one by one
-    LINES.forEach((_, i) => {
-      setTimeout(() => setVisibleCount(i + 1), LINES[i].delay);
-    });
+    const lineTimers = LINES.map((line, i) =>
+      setTimeout(() => setVisibleCount(i + 1), line.delay)
+    );
 
     // Trigger exit after all lines shown
     const exitTimer = setTimeout(() => {
       setExiting(true);
       sessionStorage.setItem(SESSION_KEY, "1");
-      setTimeout(onDone, 500);
+      setVisible(false);
     }, TOTAL_MS);
+    const doneTimer = setTimeout(onDone, TOTAL_MS + 500);
 
-    return () => clearTimeout(exitTimer);
+    return () => {
+      lineTimers.forEach(clearTimeout);
+      clearTimeout(exitTimer);
+      clearTimeout(doneTimer);
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (alreadySeen || shouldReduceMotion) return null;
 
   return (
     <AnimatePresence>
@@ -68,6 +71,7 @@ export default function BootLoader({ onDone }: { onDone: () => void }) {
             // Skip on click
             sessionStorage.setItem(SESSION_KEY, "1");
             setExiting(true);
+            setVisible(false);
             setTimeout(onDone, 400);
           }}
         >

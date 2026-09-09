@@ -9,11 +9,10 @@ import BootLoader from "./BootLoader";
  * Once the loader calls onDone, the children become visible.
  */
 export default function BootWrapper({ children }: { children: React.ReactNode }) {
-  const alreadySeen =
-    typeof sessionStorage !== "undefined" &&
-    sessionStorage.getItem("boot_seen") === "1";
-
-  const [done, setDone] = useState(alreadySeen);
+  // Keep the server render and the browser's first render identical. Reading
+  // sessionStorage while rendering made repeat visits hydrate with `done=true`
+  // even though the server had rendered `done=false`.
+  const [done, setDone] = useState(false);
 
   return (
     <>
